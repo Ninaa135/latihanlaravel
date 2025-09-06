@@ -13,3 +13,7 @@ Route::get('/helo', function () {
 Route::get('/nama', function () {
     return "Nama saya Nina🙏";
 });
+
+Route::get('/kelas', function () {
+    return "Kelas: ASE-10";
+});
