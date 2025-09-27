@@ -1,25 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Dosen</title>
-</head>
-<body>
-    <h1>Tambah Dosen</h1>
-    <form method="POST" action="/dosen">
-        @csrf
-        <input type="text" name="nama" placeholder="Nama"><br>
-        <input type="text" name="nid" placeholder="NID"><br>
-        <input type="text" name="matkul" placeholder="Matakuliah"><br>
-        <button type="submit">Simpan</button>
-    </form>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Data Dosen') }}
+        </h2>
+    </x-slot>
 
-    <h2>List Dosen</h2>
-    <ul>
-        @foreach($data as $dosen)
-            <li>{{ $dosen->nama }} - {{ $dosen->nid }} - {{ $dosen->matkul }}</li>
-        @endforeach
-    </ul>
-</body>
-</html>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{-- Form Tambah Dosen --}}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="font-semibold text-lg mb-4">Tambah Dosen</h3>
+                    <form method="POST" action="{{ route('dosen.store') }}" class="space-y-4">
+                        @csrf 
+                        <input type="text" name="nama" placeholder="Nama Dosen"
+                                class="border-gray-300 rounded-md w-full">
+                        <input type="text" name="nid" placeholder="NID"
+                                class="border-gray-300 rounded-md w-full">
+                        <input type="text" name="matkul" placeholder="Matakuliah"
+                                class="border-gray-300 rounded-md w-full">
+                        <button type="submit"
+                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Simpan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {{-- List Dosen --}}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="text-xl font-semibold text-lg mb-4">List Dosen</h3>
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-200 text-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 border">Nama</th>
+                                <th class="px-4 py-2 border">NID</th>
+                                <th class="px-4 py-2 border">Matakuliah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $dosen)
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $dosen->nama }}</td>
+                                    <td class="border px-4 py-2">{{ $dosen->nid }}</td>
+                                    <td class="border px-4 py-2">{{ $dosen->matkul }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

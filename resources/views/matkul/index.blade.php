@@ -1,24 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mata Kuliah</title>
-</head>
-<body>
-    <h1>Tambah Mata Kuliah</h1>
-    <form method="POST" action="/matkul">
-        @csrf
-        <input type="text" name="matkul" placeholder="Nama matakuliah"><br>
-        <input type="text" name="deskripsi" placeholder="Deskripsi"><br>
-        <button type="submit">Simpan</button>
-    </form>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Data Matakuliah') }}
+        </h2>
+    </x-slot>
 
-    <h2>List Mata Kuliah</h2>
-    <ul>
-        @foreach($data as $matkul)
-            <li>{{ $matkul->matkul }} - {{ $matkul->deskripsi }}</li>
-        @endforeach
-    </ul>
-</body>
-</html>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{-- Form Tambah Matakuliah --}}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="font-semibold text-lg mb-4">Tambah Matakuliah</h3>
+                    <form method="POST" action="{{ route('matkul.store') }}" class="space-y-4">
+                        @csrf 
+                        <input type="text" name="matkul" placeholder="Nama Matakuliah"
+                                class="border-gray-300 rounded-md w-full">
+                        <input type="text" name="deskripsi" placeholder="Deskripsi"
+                                class="border-gray-300 rounded-md w-full">
+                        <button type="submit"
+                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Simpan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {{-- List Matakuliah --}}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="text-xl font-semibold text-lg mb-4">List Matakuliah</h3>
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-200 text-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 border">Nama</th>
+                                <th class="px-4 py-2 border">Deskripsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $matkul)
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $matkul->matkul }}</td>
+                                    <td class="border px-4 py-2">{{ $matkul->deskripsi }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
