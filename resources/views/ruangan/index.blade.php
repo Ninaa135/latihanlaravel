@@ -32,6 +32,7 @@
                     <table class="w-full text-left">
                         <thead class="bg-gray-200 text-gray-700">
                             <tr>
+                                <th class="px-4 py-2 w-16 text-center">No</th>
                                 <th class="px-4 py-2 border">Nama</th>
                                 <th class="px-4 py-2 border">Kapasitas</th>
                             </tr>
@@ -39,6 +40,7 @@
                         <tbody>
                             @foreach ($data as $ruang)
                                 <tr>
+                                    <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
                                     <td class="border px-4 py-2">{{ $ruang->ruangan }}</td>
                                     <td class="border px-4 py-2">{{ $ruang->kapasitas }}</td>
                                 </tr>
