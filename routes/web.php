@@ -51,4 +51,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/ekyc/step3', [EkycController::class, 'step3'])->name('ekyc.step3');
     Route::post('/ekyc/step3', [EkycController::class, 'storeStep3'])->name('ekyc.step3.store');
 
+    Route::get('/ekyc/step4', [EkycController::class, 'step4'])->name('ekyc.step4');
+    Route::post('/ekyc/step4', [EkycController::class, 'storeStep4'])->name('ekyc.step4.store');
+
     require __DIR__.'/auth.php';
