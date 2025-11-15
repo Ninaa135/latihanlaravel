@@ -36,6 +36,10 @@
                         class="block px-4 py-2 rounded hover:bg-gray-200 {{ request()->routeIs('dosen.*') ? 'bg-gray-200 font-semibold' : '' }}">
                         Dosen
                     </a>
+                        <a href="{{ route('admin.ekyc.index') }}"
+                        class="block px-4 py-2 rounded hover:bg-gray-200 {{ request()->routeIs('admin.*') ? 'bg-gray-200 font-semibold' : '' }}">
+                        eKYC Registration
+                    </a>
                     @endif
                     </nav>
                 </aside>
