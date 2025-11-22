@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- konten : title -->
     <title>LP3I - Kampus Vokasi Terbaik</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -11,8 +12,9 @@
     <!-- NAVBAR -->
      <header class="w-full py-4 bg-white shadow-sm fixed top-0 left-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+            <!-- konten : logo -->
             <h1 class="text-2xl font-bold text-blue-600">LP3I</h1>
-
+            <!-- konten : navbar -->
             <nav class="hidden md:flex gap-8 text-gray-700 font-medium">
                 <a href="#beranda" class="hover:text-blue-600">Beranda</a>
                 <a href="#program" class="hover:text-blue-600">Program</a>
@@ -20,8 +22,27 @@
                 <a href="#kontak" class="hover:text-blue-600">Kontak</a>
             </nav>
             <div class="flex gap-3">
-                <a href="#login" class="px-4 py-2 text-blue-600 font-semibold">Login</a>
-                <a href="#daftar" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700">Daftar</a>
+                @if (Route::has('login'))
+                    <nav class="flex items-center justify-end gap-4">
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="px-4 py-2 bg-blue-600  text-white rounded-lg font-medium hover:bg-blue-700">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="{{ url('login') }}" class="px-4 py-2 text-blue-600 font-semibold">
+                                Log in
+                            </a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ url('register') }}" class="px-4 py-2 bg-blue-600  text-white rounded-lg font-medium hover:bg-blue-700">
+                                    Register
+                                </a>
+                            @endif
+                        @endauth
+                    </nav>
+                @endif
+                <!-- <a href="#login" class="px-4 py-2 text-blue-600 font-semibold">Login</a> -->
+                <!-- <a href="#daftar" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700">Daftar</a> -->
             </div>
         </div>
      </header>
@@ -31,6 +52,7 @@
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-4 items-center">
 
         <!-- Text Content -->
+         <!-- konten : banner wording -->
          <div>
             <h2 class="text-4xl md-text-5xl font-extrabold leading-tight text-gray-900 mb-6">
                 Kampus Vokasi Terbaik <br />Untuk Masa Depan Karier Anda
@@ -40,19 +62,26 @@
                 Raih keterampilan praktis dan peluang karier lebih cepat bersama kami.
             </p>
             <div class="flex gap-4">
-                <a href="#daftar" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700">Daftar Sekarang</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700">
+                        Daftar Sekarang
+                    </a>
+                @endif
+                <!-- <a href="#daftar" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700">Daftar Sekarang</a> -->
                 <a href="#program" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-semibold text-lg hover:bg-blue-50">Lihat Program</a>
             </div>
          </div>
 
          <!-- Image -->
           <div class="flex justify-center">
+            <!-- konten : banner image -->
             <img src="{{ asset('storage/image/landing/hero-lp3i.jpeg') }}" alt="Mahasiswa LP3I" class="w-full max-w-md object-cover drop-dhadow-xl" />
           </div>
         </div>
       </section>
 
       <!-- PROGRAM PENDIDIKAN -->
+       <!-- konten : programPendidikan -->
        <section id="program" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h3 class="text-3xl font-bold text-gray-900 mb-10">Program Pendidikan</h3>
@@ -75,6 +104,7 @@
        </section>
 
        <!-- TENTANG LP3I -->
+        <!-- konten : tentang -->
         <section id="tentang" class="py-20 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
                 <div>
@@ -95,6 +125,7 @@
         </section>
 
         <!-- FOOTER -->
+        <!-- konten : footer -->
         <footer id="kontak" class="bg-blue-600 text-white py-10">
             <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-10">
             <div>
